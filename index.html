@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Example</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- ตั้งค่าพื้นฐาน --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        /* --- โซน Footer อลังการ น่าเชื่อถือ --- */
+        .site-footer {
+            background: linear-gradient(135deg, #0b1b3d 0%, #081226 100%); /* สีน้ำเงินเข้มไล่เฉด หรูหรา มีมิติ */
+            color: #ffffff;
+            padding: 60px 0 30px 0;
+            border-top: 4px solid #d4af37; /* เส้นขอบบนสีทอง Metallic */
+            position: relative;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ตกแต่งลวดลายเบื้องหลังเพิ่มความพรีเมียม */
+        .site-footer::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* หัวข้อใหญ่สุดของ Footer */
+        .footer-main-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: #d4af37; /* สีทอง */
+            letter-spacing: 1px;
+            margin-bottom: 45px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        /* เส้นใต้หัวข้อใหญ่ */
+        .footer-main-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+
+        /* การจัดเลย์เอาท์ 3 คอลัมน์ */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.2fr; /* แบ่งสัดส่วนคอลัมน์ */
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        /* หัวข้อย่อยของแต่ละคอลัมน์ */
+        .footer-section h3 {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        /* ขีดข้างหน้าหัวข้อย่อยเพิ่มความภูมิฐาน */
+        .footer-section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 4px;
+            height: 18px;
+            background-color: #d4af37;
+            border-radius: 2px;
+        }
+
+        /* คอลัมน์: ข้อมูลหน่วยงาน */
+        .about-text {
+            color: #bdc3c7;
+            line-height: 1.8;
+            font-size: 15px;
+            text-align: justify;
+        }
+        
+        .footer-logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-logo i {
+            color: #d4af37;
+        }
+
+        /* คอลัมน์: เมนูเว็บไซต์ (พร้อม Hover Effect ลื่นๆ) */
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+        }
+
+        /* เอฟเฟกต์ Hover เมื่อเอาเมาส์ไปชี้ */
+        .footer-links a:hover {
+            color: #d4af37; /* เปลี่ยนเป็นสีทอง */
+            transform: translateX(8px); /* ขยับไปทางขวานิดนึงเพิ่มมิติ */
+        }
+
+        /* คอลัมน์: ช่องทางการติดต่อ */
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #bdc3c7;
+            font-size: 15px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .contact-info i {
+            color: #d4af37; /* ไอคอนสีทองเด่นๆ */
+            font-size: 16px;
+            margin-top: 3px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* โซนลิขสิทธิ์ด้านล่างสุด (Bottom Bar) */
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 25px;
+            text-align: center;
+            font-size: 13px;
+            color: #7f8c8d;
+        }
+
+        /* -------------------------------------------------- */
+        /* Responsive Design: ปรับแต่งให้รองรับหน้าจอมือถือ  */
+        /* -------------------------------------------------- */
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr; /* หน้าจอแท็บเล็ตเหลือ 2 คอลัมน์ */
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .site-footer {
+                padding: 40px 0 20px 0;
+            }
+
+            .footer-main-title {
+                font-size: 22px;
+                margin-bottom: 30px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr; /* หน้าจอมือถือยุบเหลือ 1 คอลัมน์แนวตั้งเรียงกัน */
+                gap: 35px;
+            }
+
+            .footer-section h3 {
+                margin-bottom: 15px;
+            }
+            
+            .footer-links a:hover {
+                transform: translateX(5px); /* ลดระยะการขยับบนมือถือให้พอดี */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            
+            <h2 class="footer-main-title">เนื้อหาหลักเว็บไซต์</h2>
+            
+            <div class="footer-grid">
+                
+                <div class="footer-section">
+                    <h3>ข้อมูลเกี่ยวกับหน่วยงาน</h3>
+                    <div class="footer-logo">
+                        <i class="fa-solid fa-gavel"></i> <span>สถาบันพัฒนาองค์กรภาครัฐ</span>
+                    </div>
+                    <p class="about-text">
+                        มุ่งมั่นสร้างสรรค์นวัตกรรมและบริการที่โปร่งใส เพื่อขับเคลื่อนเศรษฐกิจและสังคมไทยสู่ความยั่งยืนในยุคดิจิทัล ด้วยบุคลากรผู้เชี่ยวชาญและมาตรฐานการดำเนินงานระดับสากล
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>เมนูเว็บไซต์</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-right: 8px;"></i> หน้าแรก</a></li>
+                        <li><a href="#"><i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-right: 8px;"></i> ประวัติและพันธกิจ</a></li>
+                        <li><a href="#"><i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-right: 8px;"></i> ข่าวสารและกิจกรรม</a></li>
+                        <li><a href="#"><i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-right: 8px;"></i> บริการประชาชน</a></li>
+                        <li><a href="#"><i class="fa-solid fa-chevron-right" style="font-size: 10px; margin-right: 8px;"></i> ประกาศจัดซื้อจัดจ้าง</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>ช่องทางการติดต่อ</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>เลขที่ 999 ถนนพระราม 9 แขวงห้วยขวาง เขตห้วยขวาง กรุงเทพมหานคร 10310</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <span>02-123-4567 (สายด่วนสำนักงาน)</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>contact@government-agency.go.th</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-clock"></i>
+                            <span>จันทร์ - ศุกร์: 08:30 น. - 16:30 น.<br>(เว้นวันหยุดราชการ)</span>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 สถาบันพัฒนาองค์กรภาครัฐ. All Rights Reserved. สงวนลิขสิทธิ์ทุกประการ</p>
+            </div>
+            
+        </div>
+    </footer>
+
+</body>
+</html>
